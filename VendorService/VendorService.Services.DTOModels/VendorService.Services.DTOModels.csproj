@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VendorService.Data.Models\VendorService.Data.Models.csproj" />
+    <ProjectReference Include="..\VendorService.Services.Mapping\VendorService.Services.Mapping.csproj" />
+  </ItemGroup>
+
+</Project>
