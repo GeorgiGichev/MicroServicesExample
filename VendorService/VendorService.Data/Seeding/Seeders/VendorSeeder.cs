@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VendorService.Data.Seeding.Seeders
+﻿namespace VendorService.Data.Seeding.Seeders
 {
     using System;
     using System.Collections.Generic;

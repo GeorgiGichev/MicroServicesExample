@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProductService.Data.Models\ProductService.Data.Models.csproj" />
+    <ProjectReference Include="..\ProductService.Services.Mapping\ProductService.Services.Mapping.csproj" />
+  </ItemGroup>
+
+</Project>

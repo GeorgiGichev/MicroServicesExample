@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,15 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ProductService.Data.Common\ProductService.Data.Common.csproj" />
-    <ProjectReference Include="..\ProductService.Data\ProductService.Data.csproj" />
+    <ProjectReference Include="..\ProductService.Data.Models\ProductService.Data.Models.csproj" />
     <ProjectReference Include="..\ProductService.DTOModels\ProductService.DTOModels.csproj" />
-    <ProjectReference Include="..\ProductService.Services.Data\ProductService.Services.Data.csproj" />
     <ProjectReference Include="..\ProductService.Services.Mapping\ProductService.Services.Mapping.csproj" />
   </ItemGroup>
 
