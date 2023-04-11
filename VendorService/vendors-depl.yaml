@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vendors-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vendorservice
+  template:
+    metadata:
+      labels:
+        app: vendorservice
+    spec:
+      containers:
+        - name: vendorservice
+          image: georgigichev/vendorservice:latest
