@@ -6,6 +6,7 @@ using ProductService.Data.Common.Repositories;
 using ProductService.Data.Repositories;
 using ProductService.Data.Seeding;
 using ProductService.Services.Data.Product;
+using ProductService.Services.Data.Vendor;
 using ProductService.Services.DTOModels.VendorModels;
 using ProductService.Services.Mapping;
 
@@ -24,6 +25,7 @@ builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
 // Application services
 builder.Services.AddTransient<IProductService, ProductService.Services.Data.Product.ProductService>();
+builder.Services.AddTransient<IVendorService, VendorService>();
 
 
 
@@ -47,7 +49,7 @@ using (var serviceScope = app.Services.CreateScope())
 }
 
 AutoMapperConfig.RegisterMappings(
-                typeof(ProductCreateModel).GetTypeInfo().Assembly);
+                typeof(VendorCreateModel).GetTypeInfo().Assembly);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

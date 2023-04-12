@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vendors-depl
+  name: products-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vendorservice
+      app: productservice
   template:
     metadata:
       labels:
-        app: vendorservice
+        app: productservice
     spec:
       containers:
-        - name: vendorservice
-          image: georgigichev/vendorservice:latest
+        - name: productservice
+          image: georgigichev/productservice:latest
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: vendors-clusterip-srv
+  name: products-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app: vendorservice
+    app: productservice
   ports:
-  - name: vendorservice
+  - name: productservice
     protocol: TCP
     port: 80
     targetPort: 80

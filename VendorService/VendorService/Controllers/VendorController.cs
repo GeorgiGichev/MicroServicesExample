@@ -3,16 +3,19 @@
     using Microsoft.AspNetCore.Mvc;
     using VendorService.Services.Data.Vendor;
     using VendorService.Services.DTOModels.VendorModels;
+    using VendorService.SyncDataServices.Http;
 
     [Route("api/[controller]")]
     [ApiController]
     public class VendorController : ControllerBase
     {
         private readonly IVendorService vendorService;
+        private readonly IProductDataClient productDataClient;
 
-        public VendorController(IVendorService vendorService)
+        public VendorController(IVendorService vendorService, IProductDataClient productDataClient)
         {
             this.vendorService = vendorService;
+            this.productDataClient = productDataClient;
         }
 
         [HttpGet]
@@ -36,10 +39,19 @@
         }
 
         [HttpPost]
-        public IActionResult Create(VendorCreateModel model)
+        public async Task<IActionResult> Create(VendorCreateModel model)
         {
             var vendor = this.vendorService
                 .Create<VendorCreateModel, VendorReadModel>(model);
+
+            try
+            {
+                await this.productDataClient.SendVendorToProduct(vendor);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"--> Sending vendors data failed {e.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetById), new { Id = vendor.Id }, vendor);
         }

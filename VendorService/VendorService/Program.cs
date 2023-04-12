@@ -10,6 +10,7 @@ using VendorService.Data.Seeding;
 using VendorService.Services.Data.Vendor;
 using VendorService.Services.DTOModels.VendorModels;
 using VendorService.Services.Mapping;
+using VendorService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,8 @@ builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 // Application services
 builder.Services.AddTransient<IVendorService, VendoreService>();
 
-
+//Add HTTP Client
+builder.Services.AddHttpClient<IProductDataClient, HttpProductDataClient>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

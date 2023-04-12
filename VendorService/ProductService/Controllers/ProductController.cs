@@ -1,47 +1,48 @@
 ﻿namespace ProductService.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using ProductService.Data.Models;
     using ProductService.Services.Data.Product;
     using ProductService.Services.DTOModels.VendorModels;
 
-    [Route("api/[controller]")]
+    [Route("api/p/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService vendorService;
+        private readonly IProductService productService;
 
-        public ProductController(IProductService vendorService)
+        public ProductController(IProductService productService)
         {
-            this.vendorService = vendorService;
+            this.productService = productService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var vendors = this.vendorService.GetAll<ProductReadModel>();
+            var products = this.productService.GetAll<ProductReadModel>();
 
-            return Ok(vendors);
+            return Ok(products);
         }
 
         [HttpGet("{id}", Name = "GetById")]
         public IActionResult GetById(int id)
         {
-            var vendor = this.vendorService.GetById<ProductReadModel>(id);
-            if (vendor is null)
+            var product = this.productService.GetById<ProductReadModel>(id);
+            if (product is null)
             {
                 return NotFound();
             }
 
-            return Ok(vendor);
+            return Ok(product);
         }
 
         [HttpPost]
         public IActionResult Create(ProductCreateModel model)
         {
-            var vendor = this.vendorService
+            var product = this.productService
                 .Create<ProductCreateModel, ProductReadModel>(model);
 
-            return CreatedAtRoute(nameof(GetById), new { Id = vendor.Id }, vendor);
+            return CreatedAtRoute(nameof(GetById), new { Id = product.Id }, product);
         }
     }
 }

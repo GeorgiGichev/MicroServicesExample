@@ -11,12 +11,12 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Vendors.Any())
+            if (dbContext.Products.Any())
             {
                 return;
             }
 
-            var vendors = new List<Product>()
+            var products = new List<Product>()
             {
                 new Product
                 {
@@ -40,7 +40,7 @@
                     Price= 1099,
                 },
             };
-            await dbContext.Vendors.AddRangeAsync(vendors);
+            await dbContext.Products.AddRangeAsync(products);
             await dbContext.SaveChangesAsync();
         }
     }
