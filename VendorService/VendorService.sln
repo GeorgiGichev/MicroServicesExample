@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendorService.Services.DTOM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{23C703B9-BF8A-42A3-A4E9-C1C6FD699E3E}"
 	ProjectSection(SolutionItems) = preProject
+		ingress-srv.yaml = ingress-srv.yaml
+		products-depl.yaml = products-depl.yaml
 		vendors-depl.yaml = vendors-depl.yaml
 		vendors-np-srv.yaml = vendors-np-srv.yaml
 	EndProjectSection

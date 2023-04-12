@@ -1,7 +1,6 @@
 ﻿namespace ProductService.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using ProductService.Data.Models;
     using ProductService.Services.Data.Product;
     using ProductService.Services.DTOModels.VendorModels;
 

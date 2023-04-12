@@ -24,3 +24,10 @@ spec:
                 name: products-clusterip-srv
                 port:
                   number: 80
+          - path: /api/p/product
+            pathType: Prefix
+            backend:
+              service:
+                name: products-clusterip-srv
+                port:
+                  number: 80
