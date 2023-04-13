@@ -1,8 +1,11 @@
 ﻿namespace VendorService.Services.Data.Vendor
 {
+    using System.Threading.Tasks;
+
     using VendorService.Services.Mapping;
     using VendorService.Data.Models;
     using VendorService.Data.Common.Repositories;
+    using Microsoft.EntityFrameworkCore;
 
     public class VendoreService : IVendorService
     {
@@ -13,7 +16,7 @@
             this.vendorRepo = vendorRepo;
         }
 
-        public K Create<T, K>(T model)
+        public async Task<K> Create<T, K>(T model)
         {
             if (model is null)
             {
@@ -22,27 +25,27 @@
 
             var entity = model.To<Vendor>();
 
-            this.vendorRepo.AddAsync(entity);
-            this.vendorRepo.SaveChanges();
+            await this.vendorRepo.AddAsync(entity);
+            await this.vendorRepo.SaveChangesAsync();
 
             return entity.To<K>();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public async Task<IEnumerable<T>> GetAll<T>()
         {
-            return this.vendorRepo
+            return await this.vendorRepo
                 .All()
                 .To<T>()
-                .ToList();
+                .ToListAsync();
         }
 
-        public T GetById<T>(int id)
+        public async Task<T> GetById<T>(int id)
         {
-            return this.vendorRepo
+            return await this.vendorRepo
                 .All()
                 .Where(x => x.Id == id)
                 .To<T>()
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
 
         }
     }

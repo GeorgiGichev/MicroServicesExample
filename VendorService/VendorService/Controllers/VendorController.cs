@@ -19,17 +19,17 @@
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var vendors = this.vendorService.GetAll<VendorReadModel>();
+            var vendors = await this.vendorService.GetAll<VendorReadModel>();
 
             return Ok(vendors);
         }
 
         [HttpGet("{id}", Name = "GetById")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var vendor = this.vendorService.GetById<VendorReadModel>(id);
+            var vendor = await this.vendorService.GetById<VendorReadModel>(id);
             if (vendor is null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@
         [HttpPost]
         public async Task<IActionResult> Create(VendorCreateModel model)
         {
-            var vendor = this.vendorService
+            var vendor = await this.vendorService
                 .Create<VendorCreateModel, VendorReadModel>(model);
 
             try

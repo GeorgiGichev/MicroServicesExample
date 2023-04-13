@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProductService.Data.Common\ProductService.Data.Common.csproj" />
     <ProjectReference Include="..\ProductService.Data.Models\ProductService.Data.Models.csproj" />
     <ProjectReference Include="..\ProductService.DTOModels\ProductService.DTOModels.csproj" />

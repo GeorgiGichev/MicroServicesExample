@@ -17,17 +17,17 @@
         }
 
         [HttpGet]
-        public IActionResult GetAllVendors()
+        public async Task<IActionResult> GetAllVendors()
         {
-            var vendors = this.vendorService.GetAll<VendorReadModel>();
+            var vendors = await this.vendorService.GetAll<VendorReadModel>();
 
             return Ok(vendors);
         }
 
         [HttpGet("{id}", Name = "GetVendorById")]
-        public IActionResult GetVendorById(int id)
+        public async Task<IActionResult> GetVendorById(int id)
         {
-            var vendor = this.vendorService.GetById<VendorReadModel>(id);
+            var vendor = await this.vendorService.GetById<VendorReadModel>(id);
             if (vendor is null)
             {
                 return NotFound();
@@ -37,9 +37,9 @@
         }
 
         [HttpPost]
-        public IActionResult CreateVendor(VendorCreateModel model)
+        public async Task<IActionResult> CreateVendor(VendorCreateModel model)
         {
-            var vendor = this.vendorService
+            var vendor = await this.vendorService
                 .Create<VendorCreateModel, VendorReadModel>(model);
 
             return CreatedAtRoute(nameof(GetVendorById), new { Id = vendor.Id }, vendor);

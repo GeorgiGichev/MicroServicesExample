@@ -13,5 +13,7 @@ namespace ProductService.Data.Models
 
         [Required]
         public string Email { get; set; }
+
+        public ICollection<Product> Products { get; set; } = new HashSet<Product>();
     }
 }

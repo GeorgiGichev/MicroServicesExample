@@ -1,12 +1,14 @@
-﻿namespace VendorService.Services.Data.Vendor
+﻿using System.Threading.Tasks;
+
+namespace VendorService.Services.Data.Vendor
 {
     public interface IVendorService
     {
-        T GetById<T>(int id);
+        Task<T> GetById<T>(int id);
 
-        IEnumerable<T> GetAll<T>();
+        Task<IEnumerable<T>> GetAll<T>();
 
-        K Create<T, K>(T model);
+        Task<K> Create<T, K>(T model);
 
     }
 }

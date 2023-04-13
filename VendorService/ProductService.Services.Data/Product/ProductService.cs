@@ -5,6 +5,8 @@ namespace ProductService.Services.Data.Product
     using global::ProductService.Data.Common.Repositories;
     using global::ProductService.Services.Mapping;
     using global::ProductService.Data.Models;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
 
     public class ProductService : IProductService
     {
@@ -15,7 +17,7 @@ namespace ProductService.Services.Data.Product
             this.productRepo = productRepo;
         }
 
-        public K Create<T, K>(T model)
+        public async Task<K> Create<T, K>(T model)
         {
             if (model is null)
             {
@@ -24,28 +26,27 @@ namespace ProductService.Services.Data.Product
 
             var entity = model.To<Product>();
 
-            this.productRepo.AddAsync(entity);
-            this.productRepo.SaveChanges();
+            await this.productRepo.AddAsync(entity);
+            await this.productRepo.SaveChangesAsync();
 
             return entity.To<K>();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public async Task<IEnumerable<T>> GetAll<T>()
         {
-            return this.productRepo
+            return await this.productRepo
                 .All()
                 .To<T>()
-                .ToList();
+                .ToListAsync();
         }
 
-        public T GetById<T>(int id)
+        public async Task<T> GetById<T>(int id)
         {
-            return this.productRepo
+            return await this.productRepo
                 .All()
                 .Where(x => x.Id == id)
                 .To<T>()
-                .SingleOrDefault();
-
+                .SingleOrDefaultAsync();
         }
     }
 }

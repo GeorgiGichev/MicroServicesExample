@@ -24,7 +24,7 @@ else
 {
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
     {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("ProductsConn"));
+        options.UseSqlServer("Server=mssql-p-clusterip-srv,1433;Initial Catalog=productsdb;User ID=sa;Password=pa55w0rd!;Persist Security Info=False;Encrypt=False");
     });
 }
 

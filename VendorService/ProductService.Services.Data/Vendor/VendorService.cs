@@ -3,6 +3,8 @@
     using global::ProductService.Data.Common.Repositories;
     using global::ProductService.Services.Mapping;
     using global::ProductService.Data.Models;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading.Tasks;
 
     public class VendorService : IVendorService
     {
@@ -13,7 +15,7 @@
             this.vendorRepo = vendorRepo;
         }
 
-        public K Create<T, K>(T model)
+        public async Task<K> Create<T, K>(T model)
         {
             if (model is null)
             {
@@ -22,27 +24,34 @@
 
             var entity = model.To<Vendor>();
 
-            vendorRepo.AddAsync(entity);
-            vendorRepo.SaveChanges();
+            await vendorRepo.AddAsync(entity);
+            await vendorRepo.SaveChangesAsync();
 
             return entity.To<K>();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public async Task<bool> Exists(int id)
         {
-            return this.vendorRepo
+            return await this.vendorRepo
                 .All()
-                .To<T>()
-                .ToList();
+                .AnyAsync(v => v.Id == id);
         }
 
-        public T GetById<T>(int id)
+        public async Task<IEnumerable<T>> GetAll<T>()
         {
-            return this.vendorRepo
+            return await this.vendorRepo
+                .All()
+                .To<T>()
+                .ToListAsync();
+        }
+
+        public async Task<T> GetById<T>(int id)
+        {
+            return await this.vendorRepo
                 .All()
                 .Where(x => x.Id == id)
                 .To<T>()
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
 
         }
     }

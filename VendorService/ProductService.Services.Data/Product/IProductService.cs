@@ -1,12 +1,14 @@
-﻿namespace ProductService.Services.Data.Product
+﻿using System.Threading.Tasks;
+
+namespace ProductService.Services.Data.Product
 {
     public interface IProductService
     {
-        T GetById<T>(int id);
+        Task<T> GetById<T>(int id);
 
-        IEnumerable<T> GetAll<T>();
+        Task<IEnumerable<T>> GetAll<T>();
 
-        K Create<T, K>(T model);
+        Task<K> Create<T, K>(T model);
 
     }
 }

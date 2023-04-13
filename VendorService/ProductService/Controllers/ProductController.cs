@@ -16,17 +16,17 @@
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var products = this.productService.GetAll<ProductReadModel>();
+            var products = await this.productService.GetAll<ProductReadModel>();
 
             return Ok(products);
         }
 
         [HttpGet("{id}", Name = "GetById")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var product = this.productService.GetById<ProductReadModel>(id);
+            var product = await this.productService.GetById<ProductReadModel>(id);
             if (product is null)
             {
                 return NotFound();
@@ -36,9 +36,9 @@
         }
 
         [HttpPost]
-        public IActionResult Create(ProductCreateModel model)
+        public async Task<IActionResult> Create(ProductCreateModel model)
         {
-            var product = this.productService
+            var product = await this.productService
                 .Create<ProductCreateModel, ProductReadModel>(model);
 
             return CreatedAtRoute(nameof(GetById), new { Id = product.Id }, product);
