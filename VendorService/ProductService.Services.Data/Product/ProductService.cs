@@ -40,11 +40,30 @@ namespace ProductService.Services.Data.Product
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllByVendor<T>(int vendorId)
+        {
+            return await this.productRepo
+                .All()
+                .Where(x => x.VendorId == vendorId)
+                .OrderBy(x => x.Vendor.Name)
+                .To<T>()
+                .ToListAsync();
+        }
+
         public async Task<T> GetById<T>(int id)
         {
             return await this.productRepo
                 .All()
                 .Where(x => x.Id == id)
+                .To<T>()
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task<T> GetProduct<T>(int vendorId, int productId)
+        {
+            return await this.productRepo
+                .All()
+                .Where(x => x.Id == productId && x.VendorId == vendorId)
                 .To<T>()
                 .SingleOrDefaultAsync();
         }

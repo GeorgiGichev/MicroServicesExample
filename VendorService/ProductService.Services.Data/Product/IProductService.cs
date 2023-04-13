@@ -10,5 +10,8 @@ namespace ProductService.Services.Data.Product
 
         Task<K> Create<T, K>(T model);
 
+        Task<IEnumerable<T>> GetAllByVendor<T>(int vendorId);
+
+        Task<T> GetProduct<T>(int vendorId, int productId);
     }
 }
