@@ -24,6 +24,7 @@
                     Type = "soft-drink",
                     Volume = "2L",
                     Price= 0.5M,
+                    VendorId = 1
                 },
                 new Product
                 {
@@ -31,6 +32,7 @@
                     Type = "safety razor",
                     Volume = "1 piece",
                     Price= 10,
+                    VendorId = 2
                 },
                 new Product
                 {
@@ -38,6 +40,7 @@
                     Type = "Console PlayStation 5",
                     Volume = "1 piece",
                     Price= 1099,
+                    VendorId = 3
                 },
             };
             await dbContext.Products.AddRangeAsync(products);

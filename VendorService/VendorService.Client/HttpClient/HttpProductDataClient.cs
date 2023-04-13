@@ -1,15 +1,17 @@
-﻿using System.Text;
-using System.Text.Json;
-using VendorService.Services.DTOModels.VendorModels;
-
-namespace VendorService.SyncDataServices.Http
+﻿namespace VendorService.Client.HttpClient
 {
+    using Microsoft.Extensions.Configuration;
+    using System.Text;
+    using System.Text.Json;
+    
+    using VendorService.Services.DTOModels.VendorModels;
+
     public class HttpProductDataClient : IProductDataClient
     {
-        private readonly HttpClient httpClient;
+        private readonly System.Net.Http.HttpClient httpClient;
         private readonly IConfiguration config;
 
-        public HttpProductDataClient(HttpClient httpClient, IConfiguration config)
+        public HttpProductDataClient(System.Net.Http.HttpClient httpClient, IConfiguration config)
         {
             this.httpClient = httpClient;
             this.config = config;

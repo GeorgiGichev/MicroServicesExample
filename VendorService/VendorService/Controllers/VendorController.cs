@@ -1,9 +1,9 @@
 ﻿namespace VendorService.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using VendorService.Client.HttpClient;
     using VendorService.Services.Data.Vendor;
     using VendorService.Services.DTOModels.VendorModels;
-    using VendorService.SyncDataServices.Http;
 
     [Route("api/[controller]")]
     [ApiController]

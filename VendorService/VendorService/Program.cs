@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-
+using VendorService.Client.HttpClient;
 using VendorService.Data;
 using VendorService.Data.Common;
 using VendorService.Data.Common.Repositories;
@@ -10,8 +10,6 @@ using VendorService.Data.Seeding;
 using VendorService.Services.Data.Vendor;
 using VendorService.Services.DTOModels.VendorModels;
 using VendorService.Services.Mapping;
-
-using VendorService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 

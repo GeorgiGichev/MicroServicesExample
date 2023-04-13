@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VendorService.Client\VendorService.Client.csproj" />
     <ProjectReference Include="..\VendorService.Data.Common\VendorService.Data.Common.csproj" />
     <ProjectReference Include="..\VendorService.Data\VendorService.Data.csproj" />
     <ProjectReference Include="..\VendorService.Services.Data\VendorService.Services.Data.csproj" />

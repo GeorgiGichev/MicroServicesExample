@@ -1,6 +1,6 @@
 ﻿using VendorService.Services.DTOModels.VendorModels;
 
-namespace VendorService.SyncDataServices.Http
+namespace VendorService.Client.HttpClient
 {
     public interface IProductDataClient
     {
