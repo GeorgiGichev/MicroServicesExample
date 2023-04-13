@@ -26,6 +26,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{23C703B9-BF8A-42A3-A4E9-C1C6FD699E3E}"
 	ProjectSection(SolutionItems) = preProject
 		ingress-srv.yaml = ingress-srv.yaml
+		local-pvc.yaml = local-pvc.yaml
+		mssql-vendor-depl.yaml = mssql-vendor-depl.yaml
 		products-depl.yaml = products-depl.yaml
 		vendors-depl.yaml = vendors-depl.yaml
 		vendors-np-srv.yaml = vendors-np-srv.yaml
@@ -35,25 +37,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VendorServicePjs", "VendorS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PoductServicePjs", "PoductServicePjs", "{26F350DC-7438-4194-973F-3691E670DB6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService", "ProductService\ProductService.csproj", "{8D9920F5-EE2D-423E-BBCC-06A9AD7AFE9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService", "ProductService\ProductService.csproj", "{8D9920F5-EE2D-423E-BBCC-06A9AD7AFE9E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService.Data", "ProductService.Data", "{3BF59893-9C50-4716-AD54-78AD41444F9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Data", "ProductService.Data\ProductService.Data.csproj", "{CD425702-255E-4F78-ADF1-6F21D4625999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Data", "ProductService.Data\ProductService.Data.csproj", "{CD425702-255E-4F78-ADF1-6F21D4625999}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Data.Common", "ProductService.Data.Common\ProductService.Data.Common.csproj", "{9941A4E8-0558-4D0C-A40A-9B2C438EF2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Data.Common", "ProductService.Data.Common\ProductService.Data.Common.csproj", "{9941A4E8-0558-4D0C-A40A-9B2C438EF2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Data.Models", "ProductService.Data.Models\ProductService.Data.Models.csproj", "{9BA9BF17-0FE9-4A57-B036-F067511A4F26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Data.Models", "ProductService.Data.Models\ProductService.Data.Models.csproj", "{9BA9BF17-0FE9-4A57-B036-F067511A4F26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService.Services", "ProductService.Services", "{B73036C1-45C6-498E-B3A8-F3D4D7CAC8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Services.Data", "ProductService.Services.Data\ProductService.Services.Data.csproj", "{F046CB23-E7AA-4E48-8C21-F456D4C0F9D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Services.Data", "ProductService.Services.Data\ProductService.Services.Data.csproj", "{F046CB23-E7AA-4E48-8C21-F456D4C0F9D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Services.Mapping", "ProductService.Services.Mapping\ProductService.Services.Mapping.csproj", "{0AF348E6-886E-4663-932C-92E4902BA2FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Services.Mapping", "ProductService.Services.Mapping\ProductService.Services.Mapping.csproj", "{0AF348E6-886E-4663-932C-92E4902BA2FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProducrService.DTO", "ProducrService.DTO", "{72D6F8B2-5A87-4343-84A9-A8FD095C8896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.DTOModels", "ProductService.DTOModels\ProductService.DTOModels.csproj", "{52D250C8-CBDF-4B93-A65E-D88476491940}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.DTOModels", "ProductService.DTOModels\ProductService.DTOModels.csproj", "{52D250C8-CBDF-4B93-A65E-D88476491940}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

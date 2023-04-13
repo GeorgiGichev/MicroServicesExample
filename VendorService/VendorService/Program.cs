@@ -10,15 +10,26 @@ using VendorService.Data.Seeding;
 using VendorService.Services.Data.Vendor;
 using VendorService.Services.DTOModels.VendorModels;
 using VendorService.Services.Mapping;
+
 using VendorService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.UseInMemoryDatabase(databaseName: "VendorsDb");
-});
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    {
+        options.UseInMemoryDatabase(databaseName: "VendorsDb");
+    });
+}
+else
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("VendorsConn"));
+    });
+}
 
 // Data repositories
 builder.Services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -46,7 +57,18 @@ var app = builder.Build();
 using (var serviceScope = app.Services.CreateScope())
 {
     var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    //dbContext.Database.Migrate();
+    if (app.Environment.IsProduction())
+    {
+        try
+        {
+            dbContext.Database.Migrate();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"--> Could not run migrations: {e.Message}, {e.InnerException?.Message}");
+        }
+        
+    }
     new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
 }
 
