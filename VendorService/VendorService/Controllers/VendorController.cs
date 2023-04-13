@@ -1,6 +1,8 @@
 ﻿namespace VendorService.Controllers
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
+    using VendorService.Client.AsyncDataServices;
     using VendorService.Client.HttpClient;
     using VendorService.Services.Data.Vendor;
     using VendorService.Services.DTOModels.VendorModels;
@@ -11,11 +13,16 @@
     {
         private readonly IVendorService vendorService;
         private readonly IProductDataClient productDataClient;
+        private readonly IMessageBusClient messageBusClient;
 
-        public VendorController(IVendorService vendorService, IProductDataClient productDataClient)
+        public VendorController(
+            IVendorService vendorService,
+            IProductDataClient productDataClient,
+            IMessageBusClient messageBusClient)
         {
             this.vendorService = vendorService;
             this.productDataClient = productDataClient;
+            this.messageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -42,15 +49,27 @@
         public async Task<IActionResult> Create(VendorCreateModel model)
         {
             var vendor = await this.vendorService
-                .Create<VendorCreateModel, VendorReadModel>(model);
+                .Create<VendorCreateModel, VendorPublishedModel>(model);
 
+            //Send Sync Message
+            //try
+            //{
+            //    await this.productDataClient.SendVendorToProduct(vendor);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine($"--> Sending vendors data failed {e.Message}");
+            //}
+
+            //Send Async Message
             try
             {
-                await this.productDataClient.SendVendorToProduct(vendor);
+                vendor.Event = "Vendor_Published";
+                this.messageBusClient.PublishNewVendor(vendor);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"--> Sending vendors data failed {e.Message}");
+                Console.WriteLine($"--> Sending asynchronously failed {e.Message}");
             }
 
             return CreatedAtRoute(nameof(GetById), new { Id = vendor.Id }, vendor);

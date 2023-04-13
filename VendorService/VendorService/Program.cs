@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using VendorService.Client.AsyncDataServices;
 using VendorService.Client.HttpClient;
 using VendorService.Data;
 using VendorService.Data.Common;
@@ -39,6 +40,9 @@ builder.Services.AddTransient<IVendorService, VendoreService>();
 
 //Add HTTP Client
 builder.Services.AddHttpClient<IProductDataClient, HttpProductDataClient>();
+
+//Add MessageBus Client
+builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
