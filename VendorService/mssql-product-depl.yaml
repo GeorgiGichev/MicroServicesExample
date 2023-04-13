@@ -6,16 +6,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mssql
+      app: mssql-p
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mssql
+        app: mssql-p
     spec:
+      terminationGracePeriodSeconds: 30
+      hostname: mssql-p
+      securityContext:
+        fsGroup: 10001
       containers:
-        - name: mssql
+        - name: mssql-p
           image: mcr.microsoft.com/mssql/server:2017-latest
           ports:
             - containerPort: 1433
@@ -27,7 +31,7 @@ spec:
           - name: SA_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: mssql
+                name: mssql-p
                 key: SA_PASSWORD
           volumeMounts:
             - mountPath: /var/opt/mssql/data
@@ -35,7 +39,7 @@ spec:
       volumes:
       - name: mssqldb
         persistentVolumeClaim:
-          claimName: mssql-claim
+          claimName: mssql-p-claim
 ---
 apiVersion: v1
 kind: Service
@@ -44,9 +48,9 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: mssql
+    app: mssql-p
   ports:
-  - name: mssql
+  - name: mssql-p
     protocol: TCP
     port: 1433
     targetPort: 1433
@@ -58,7 +62,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: mssql
+    app: mssql-p
   ports:
   - protocol: TCP
     port: 1433

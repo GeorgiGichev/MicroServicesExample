@@ -66,6 +66,7 @@ using (var serviceScope = app.Services.CreateScope())
         }
 
     }
+    
     new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
 }
 
