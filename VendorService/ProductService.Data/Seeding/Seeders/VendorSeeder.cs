@@ -21,20 +21,17 @@ namespace ProductService.Data.Seeding.Seeders
                 new Vendor
                 {
                     Name = "Coca-Cola Helenik Bottling Bulgaria",
-                    Address = "Str. Racho Petkov 8, Sofia 1766, Bulgaria",
-                    Email= "pacbg@cchellenic.com",
+                    ExternalId = 1,
                 },
                 new Vendor
                 {
                     Name = "Procter & Gamble Bulgaria",
-                    Address = "Str. Bulevard Bulgaria 69, Sofia 1404, Bulgaria",
-                    Email= "pg.reception@kavenorbico.bg",
+                    ExternalId = 2,
                 },
                 new Vendor
                 {
                     Name = "Sony Bulgaria",
-                    Address = "Str. Bussines park Sofia, Sofia 1766, Bulgaria",
-                    Email= "sonybg@sony.com",
+                    ExternalId = 3,
                 },
             };
             await dbContext.Vendors.AddRangeAsync(vendors);

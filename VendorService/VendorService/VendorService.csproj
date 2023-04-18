@@ -26,4 +26,10 @@
     <ProjectReference Include="..\VendorService.Services.Mapping\VendorService.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.Production.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

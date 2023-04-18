@@ -35,14 +35,5 @@
 
             return Ok(vendor);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateVendor(VendorCreateModel model)
-        {
-            var vendor = await this.vendorService
-                .Create<VendorCreateModel, VendorReadModel>(model);
-
-            return CreatedAtRoute(nameof(GetVendorById), new { Id = vendor.Id }, vendor);
-        }
     }
 }

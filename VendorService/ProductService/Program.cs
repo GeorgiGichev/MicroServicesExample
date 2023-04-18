@@ -1,5 +1,7 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using ProductService.Client.AsyncDataServices;
+using ProductService.Client.EventProcessing;
 using ProductService.Data;
 using ProductService.Data.Common;
 using ProductService.Data.Common.Repositories;
@@ -24,7 +26,7 @@ else
 {
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
     {
-        options.UseSqlServer("Server=mssql-p-clusterip-srv,1433;Initial Catalog=productsdb;User ID=sa;Password=pa55w0rd!;Persist Security Info=False;Encrypt=False");
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ProductsConn"));
     });
 }
 
@@ -37,6 +39,9 @@ builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 builder.Services.AddTransient<IProductService, ProductService.Services.Data.Product.ProductService>();
 builder.Services.AddTransient<IVendorService, VendorService>();
 
+//Add Event Processing
+builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
+builder.Services.AddHostedService<MessageBusSubscriber>();
 
 
 builder.Services.AddControllers();

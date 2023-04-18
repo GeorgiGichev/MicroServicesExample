@@ -37,6 +37,13 @@
                 .AnyAsync(v => v.Id == id);
         }
 
+        public async Task<bool> ExternalVendorExists(int externalId)
+        {
+            return await this.vendorRepo
+                .All()
+                .AnyAsync(v => v.ExternalId == externalId);
+        }
+
         public async Task<IEnumerable<T>> GetAll<T>()
         {
             return await this.vendorRepo

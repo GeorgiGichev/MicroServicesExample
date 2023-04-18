@@ -11,5 +11,7 @@ namespace ProductService.Services.Data.Vendor
         Task<K> Create<T, K>(T model);
 
         Task<bool> Exists(int id);
+
+        Task<bool> ExternalVendorExists(int externalId);
     }
 }

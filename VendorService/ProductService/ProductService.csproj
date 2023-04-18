@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="appsettings.Development.json" />
+    <None Include="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,11 +28,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProductService.Client\ProductService.Client.csproj" />
     <ProjectReference Include="..\ProductService.Data.Common\ProductService.Data.Common.csproj" />
     <ProjectReference Include="..\ProductService.Data\ProductService.Data.csproj" />
     <ProjectReference Include="..\ProductService.DTOModels\ProductService.DTOModels.csproj" />
     <ProjectReference Include="..\ProductService.Services.Data\ProductService.Services.Data.csproj" />
     <ProjectReference Include="..\ProductService.Services.Mapping\ProductService.Services.Mapping.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Production.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
