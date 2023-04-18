@@ -27,7 +27,7 @@
         }
 
         [HttpGet]
-        [Route("by-vendors/{vendorId}")]
+        [Route("by-vendor/{vendorId}")]
         public async Task<IActionResult> GetAllByVendor(int vendorId)
         {
             if (!await this.vendorService.Exists(vendorId))

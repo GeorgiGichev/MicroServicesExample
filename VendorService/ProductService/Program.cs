@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using ProductService.Client.AsyncDataServices;
 using ProductService.Client.EventProcessing;
+using ProductService.Client.Grpc;
 using ProductService.Data;
 using ProductService.Data.Common;
 using ProductService.Data.Common.Repositories;
@@ -37,12 +38,14 @@ builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
 // Application services
 builder.Services.AddTransient<IProductService, ProductService.Services.Data.Product.ProductService>();
-builder.Services.AddTransient<IVendorService, VendorService>();
+builder.Services.AddTransient<IVendorService, ProductService.Services.Data.Vendor.VendorService>();
 
 //Add Event Processing
 builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
 builder.Services.AddHostedService<MessageBusSubscriber>();
 
+//Add Grpc Client
+builder.Services.AddScoped<IVendorDataClient, VendorDataClient>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,12 +1,7 @@
-﻿using ProductService.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProductService.Data.Seeding.Seeders
+﻿namespace ProductService.Data.Seeding.Seeders
 {
+    using ProductService.Client.Grpc;
+
     internal class VendorSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
@@ -16,26 +11,14 @@ namespace ProductService.Data.Seeding.Seeders
                 return;
             }
 
-            var vendors = new List<Vendor>()
+            var grpcClient = (VendorDataClient)serviceProvider.GetService(typeof(IVendorDataClient));
+            var vendors = await grpcClient.ReturnAllVendors();
+
+            if (vendors is not null)
             {
-                new Vendor
-                {
-                    Name = "Coca-Cola Helenik Bottling Bulgaria",
-                    ExternalId = 1,
-                },
-                new Vendor
-                {
-                    Name = "Procter & Gamble Bulgaria",
-                    ExternalId = 2,
-                },
-                new Vendor
-                {
-                    Name = "Sony Bulgaria",
-                    ExternalId = 3,
-                },
-            };
-            await dbContext.Vendors.AddRangeAsync(vendors);
-            await dbContext.SaveChangesAsync();
+                await dbContext.Vendors.AddRangeAsync(vendors);
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }

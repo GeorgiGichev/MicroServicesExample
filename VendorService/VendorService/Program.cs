@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using VendorService.Client.AsyncDataServices;
+using VendorService.Client.Grpc;
 using VendorService.Client.HttpClient;
 using VendorService.Data;
 using VendorService.Data.Common;
@@ -44,14 +45,17 @@ builder.Services.AddHttpClient<IProductDataClient, HttpProductDataClient>();
 //Add MessageBus Client
 builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
+//Add GRPC
+builder.Services.AddGrpc();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(80);
-});
+//builder.WebHost.ConfigureKestrel(options =>
+//{
+//    options.ListenAnyIP(80);
+//});
 
 var app = builder.Build();
 
@@ -89,5 +93,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGrpcService<GrpcVendorService>();
 
 app.Run();
