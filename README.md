@@ -10,9 +10,9 @@ This is Example of Micro Services
 * Grpc
 * Entity Framwork Core 7.03
 * AutoMapper
-
-*Java 17
-*Spring
-*Hibernate
-*HanaDb
+* 
+* Java 17
+* Spring
+* Hibernate
+* HanaDb
 
