@@ -2,7 +2,7 @@
 This is Example of Micro Services
 * VendorServise(.Net, MSSQL)
 * ProductServise(.Net, MSSQL)
-* Store(Java, HanaDB)
+* Store(Java, PostgreSQL)
 
 # :hammer: Built With:
 * ASP.NET Web API
@@ -17,5 +17,5 @@ This is Example of Micro Services
 * Java 17
 * Spring
 * Hibernate
-* PostgresDB
+* PostgreSQL
 
