@@ -1,4 +1,4 @@
-package org.store.dto;
+package org.storeService.dto;
 
 import java.util.UUID;
 

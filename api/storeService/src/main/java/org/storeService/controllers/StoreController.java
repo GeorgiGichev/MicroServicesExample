@@ -1,11 +1,11 @@
-package org.store.controllers;
+package org.storeService.controllers;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.store.dto.StoreCreationRequest;
-import org.store.services.data.StoreService;
+import org.storeService.dto.StoreCreationRequest;
+import org.storeService.services.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +16,7 @@ public record StoreController(StoreService storeService) {
 	
 	@PostMapping
 	public void createStore(@RequestBody StoreCreationRequest storeRequest) {
-		System.out.println(String.format("New store creation %", storeRequest.address()));
+		log.info("Creating store {}", storeRequest);
 		storeService.createStore(storeRequest);
 	}
 }
