@@ -17,5 +17,5 @@ This is Example of Micro Services
 * Java 17
 * Spring
 * Hibernate
-* HanaDb
+* PostgresDB
 
