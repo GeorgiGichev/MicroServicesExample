@@ -31,3 +31,10 @@ spec:
                 name: products-clusterip-srv
                 port:
                   number: 80
+          - path: /api/s/store
+            pathType: Prefix
+            backend:
+              service:
+                name: store-clusterip-srv
+                port:
+                  number: 80

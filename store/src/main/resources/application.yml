@@ -6,7 +6,7 @@ spring:
     name: storeService
   datasource:
     username: 'testUser'
-    url: jdbc:postgresql://localhost:5432/testDB
+    url: jdbc:postgresql://postgres-clusterip-srv:5432/testDB
     password: 'testPassword'
 spring.jpa:
   properties:
